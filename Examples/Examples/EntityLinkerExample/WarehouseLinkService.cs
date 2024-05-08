@@ -40,8 +40,8 @@ namespace TimberAPIExample.Examples.EntityLinkerExample
             foreach (var link in _linker.EntityLinks)
             {
                 var buildingToPause = link.Linker == _linker
-                    ? link.Linkee.GetComponent<PausableBuilding>()
-                    : link.Linker.GetComponent<PausableBuilding>();
+                    ? link.Linkee.GetComponentFast<PausableBuilding>()
+                    : link.Linker.GetComponentFast<PausableBuilding>();
                 if (_stockpile.Inventory
                          .Stock
                          .Where(x => x.GoodId.Contains("Berr"))

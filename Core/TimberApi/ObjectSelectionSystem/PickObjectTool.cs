@@ -74,7 +74,8 @@ namespace TimberApi.ObjectSelectionSystem
             return _warning;
         }
 
-        public void StartPicking<T>(string title, string description, Func<GameObject, string> validateCandidate, Action<GameObject> callback) where T : BaseComponent, IRegisteredComponent
+        public void StartPicking<T>(string title, string description, 
+            Func<GameObject, string> validateCandidate, Action<GameObject> callback) where T : BaseComponent, IRegisteredComponent
         {
             _toolDescription = CreateDescription(title, description);
             _validateCandidate = validateCandidate;

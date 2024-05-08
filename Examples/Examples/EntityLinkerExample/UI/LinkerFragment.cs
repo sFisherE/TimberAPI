@@ -11,6 +11,7 @@ using Timberborn.Stockpiles;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.UIElements.Length.Unit;
+using Timberborn.BaseComponentSystem;
 
 namespace TimberAPIExample.Examples.EntityLinkerExample.UI
 {
@@ -86,10 +87,10 @@ namespace TimberAPIExample.Examples.EntityLinkerExample.UI
             return _root;
         }
 
-        public virtual void ShowFragment(GameObject entity)
+        public virtual void ShowFragment(BaseComponent entity)
         {
-            _entityLinker = entity.GetComponent<EntityLinker>();
-            _component = entity.GetComponent<T>();
+            _entityLinker = entity.GetComponentFast<EntityLinker>();
+            _component = entity.GetComponentFast<T>();
 
             if ((bool)_entityLinker && _component != null)
             {
@@ -126,13 +127,13 @@ namespace TimberAPIExample.Examples.EntityLinkerExample.UI
             {
                 var link = links[i];
 
-                var linkee = link.Linker == _entityLinker
+                EntityLinker linkee = link.Linker == _entityLinker
                     ? link.Linkee
                     : link.Linker;
 
-                var linkeeGameObject = (linkee).gameObject;
+                //var linkeeGameObject = (linkee).gameObject;
 
-                var prefab = linkeeGameObject.GetComponent<LabeledPrefab>();
+                var prefab = linkee.GetComponentFast<LabeledPrefab>();
                 var sprite = prefab.Image;
 
                 var view = _entityLinkViewFactory.Create(_loc.T(prefab.DisplayNameLocKey));
@@ -145,7 +146,7 @@ namespace TimberAPIExample.Examples.EntityLinkerExample.UI
                 var targetButton = view.Q<Button>("Target");
                 targetButton.clicked += delegate
                 {
-                    _entitySelectionService.SelectAndFocusOn(linkeeGameObject);
+                    _entitySelectionService.SelectAndFocusOn(linkee);
                 };
                 view.Q<Button>("RemoveLinkButton").clicked += delegate
                 {

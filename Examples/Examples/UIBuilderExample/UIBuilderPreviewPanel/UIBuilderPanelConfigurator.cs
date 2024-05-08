@@ -7,6 +7,8 @@ using TimberApi.UiBuilderSystem;
 using TimberApi.UiBuilderSystem.CustomElements;
 using TimberAPIExample.Examples.UIBuilderExample.UIBuilderPreviewPanel.Previews;
 using Timberborn.MainMenuScene;
+using Timberborn.Options;
+using Timberborn.OptionsGame;
 using UnityEngine.UIElements;
 
 namespace TimberAPIExample.Examples.UIBuilderExample.UIBuilderPreviewPanel
@@ -29,7 +31,7 @@ namespace TimberAPIExample.Examples.UIBuilderExample.UIBuilderPreviewPanel
         }
     }
     
-    [HarmonyPatch(typeof(OptionsBox), "GetPanel")]
+    [HarmonyPatch(typeof(GameOptionsBox), "GetPanel")]
     public static class InGameMenuPanelPatch
     {
         private static void Postfix(ref VisualElement __result)

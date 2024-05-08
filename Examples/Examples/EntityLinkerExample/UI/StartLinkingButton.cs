@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Timberborn.BaseComponentSystem;
+using System;
 using TimberApi.EntityLinkerSystem;
 using Timberborn.EntitySystem;
 using Timberborn.Localization;
@@ -40,7 +41,7 @@ namespace TimberAPIExample.Examples.EntityLinkerExample.UI
         public virtual void Initialize<T>(VisualElement root,
                                        Func<EntityLinker> linkerProvider,
                                        Action createdLinkCallback)
-            where T : MonoBehaviour, IRegisteredComponent
+            where T : BaseComponent, IRegisteredComponent
         {
             _button = root.Q<Button>("NewLinkButton");
             _button.clicked += delegate
@@ -58,7 +59,7 @@ namespace TimberAPIExample.Examples.EntityLinkerExample.UI
         /// <param name="createdLinkCallback"></param>
         protected virtual void StartLinkEntities<T>(EntityLinker linker,
                                                     Action createdLinkCallback)
-            where T : MonoBehaviour, IRegisteredComponent
+            where T : BaseComponent, IRegisteredComponent
         {
             _pickObjectTool.StartPicking<T>(
                 _loc.T(StartLinkingTitleLocKey),

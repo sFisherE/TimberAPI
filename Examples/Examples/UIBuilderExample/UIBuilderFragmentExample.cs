@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using static TimberAPIExample.TimberAPIExamplePlugin;
 using static UnityEngine.UIElements.Length.Unit;
-
+using Timberborn.BaseComponentSystem;
 namespace TimberAPIExample.Examples.UIBuilderExample
 {
     public class UIBuilderFragmentExample : IEntityPanelFragment
@@ -57,7 +57,7 @@ namespace TimberAPIExample.Examples.UIBuilderExample
             return _root;
         }
 
-        public void ShowFragment(GameObject entity)
+        public void ShowFragment(BaseComponent entity)
         {
             
         }
